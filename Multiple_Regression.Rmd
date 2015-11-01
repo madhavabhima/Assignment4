@@ -1,0 +1,38 @@
+---
+output: pdf_document
+---
+## Multiple Linear Regression Model Example
+
+```{r}
+
+### Set Current Working directory
+setwd("C:/CTU/Big Data")
+
+### Reading the data from csv file
+mydata <- read.csv("Ozone_data.csv")
+
+### Create Linear Equation
+lmMod <- lm(Ozone ~ Temp+Wind, data = mydata)
+
+### Summary of Multiple Linear Regression 
+summary(lmMod)
+
+### Based on the above summary of linear model, here is the linear regression equation
+### Ozone = 1.8 Temp - 3.3 Wind - 67
+### R-squared value = 0.58
+
+### Ozone is Directly proportional to Temp
+### Ozone is Indirectly proportional to Wind
+### And Wind impacts more than Temp
+
+
+### Draws a correlation plot
+pairs(mydata)
+
+### calculates the Pearson's correlation coefficient 
+cor(mydata)
+
+### Confidence Interval
+model1=lm(Ozone ~ Temp+Wind+Temp*Wind, data = mydata)
+confint(model1,conf.level=0.95)
+
